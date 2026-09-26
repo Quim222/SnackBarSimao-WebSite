@@ -1,17 +1,135 @@
 <section class="hero-banner" [class.has-photo]="!!cafe.heroImage">
- @if(cafe.heroImage){<img class="hero-background" [src]="cafe.heroImage" [alt]="cafe.heroImageAlt" width="1600" height="800" fetchpriority="high">}
- <div class="container hero-content"><p class="eyebrow">{{ 'home.welcome' | t }}</p><h1>Snack Bar<br>Simão</h1><p>{{ ('home.description' | t).replace('|', '\n') }}</p><div class="actions"><a routerLink="/ementa" class="button primary">{{ 'nav.viewMenu' | t }} <app-icon name="arrow"/></a><a routerLink="/" fragment="contactos" class="button secondary"><app-icon name="pin"/>{{ 'home.where' | t }}</a></div></div>
+  @if (cafe.heroImage) {
+    <img
+      class="hero-background"
+      [src]="cafe.heroImage"
+      [alt]="cafe.heroImageAlt"
+      width="1600"
+      height="800"
+      fetchpriority="high"
+    />
+  }
+  <div class="container hero-content">
+    <p class="eyebrow">{{ 'home.welcome' | t }}</p>
+    <h1>Snack Bar<br />Simão</h1>
+    <p>{{ ('home.description' | t).replace('|', '\n') }}</p>
+    <div class="actions">
+      <a routerLink="/ementa" class="button primary"
+        >{{ 'nav.viewMenu' | t }} <app-icon name="arrow" /></a
+      ><a routerLink="/" fragment="contactos" class="button secondary"
+        ><app-icon name="pin" />{{ 'home.where' | t }}</a
+      >
+    </div>
+  </div>
 </section>
-<div class="container benefits"><div><app-icon name="coffee"/><span><strong>{{ 'home.coffee' | t }}</strong><small>{{ 'home.coffeeDesc' | t }}</small></span></div><div><app-icon name="plate"/><span><strong>{{ 'home.food' | t }}</strong><small>{{ 'home.foodDesc' | t }}</small></span></div><div><app-icon name="coffee"/><span><strong>{{ 'home.community' | t }}</strong><small>{{ 'home.communityDesc' | t }}</small></span></div></div>
+<div class="container benefits">
+  <div>
+    <app-icon name="coffee" /><span
+      ><strong>{{ 'home.coffee' | t }}</strong
+      ><small>{{ 'home.coffeeDesc' | t }}</small></span
+    >
+  </div>
+  <div>
+    <app-icon name="plate" /><span
+      ><strong>{{ 'home.food' | t }}</strong
+      ><small>{{ 'home.foodDesc' | t }}</small></span
+    >
+  </div>
+  <div>
+    <app-icon name="coffee" /><span
+      ><strong>{{ 'home.community' | t }}</strong
+      ><small>{{ 'home.communityDesc' | t }}</small></span
+    >
+  </div>
+</div>
 <section id="sobre" class="about container section" aria-labelledby="about-title">
- @if(cafe.interiorImage){<img class="interior" [src]="cafe.interiorImage" [alt]="cafe.interiorImageAlt" width="720" height="500" loading="lazy">}
- <div><p class="eyebrow">{{ 'home.aboutEyebrow' | t }}</p><h2 id="about-title">{{ ('home.aboutTitle' | t).replace('|', '\n') }}</h2><p>{{ 'home.aboutText1' | t }}</p><p>{{ 'home.aboutText2' | t }}</p><a routerLink="/" fragment="contactos" class="text-link">{{ 'home.visit' | t }} <app-icon name="arrow"/></a></div>
- <aside class="hours-card"><p class="eyebrow">{{ 'home.hours' | t }}</p><app-icon name="clock"/>@for(hour of cafe.hours; track hour.days){<p><strong>{{hour.days}}</strong><br>{{hour.time}}</p>}@empty{<p>{{ 'home.hoursSoon' | t }}</p>}</aside>
+  @if (cafe.interiorImage) {
+    <img
+      class="interior"
+      [src]="cafe.interiorImage"
+      [alt]="cafe.interiorImageAlt"
+      width="720"
+      height="500"
+      loading="lazy"
+    />
+  }
+  <div>
+    <p class="eyebrow">{{ 'home.aboutEyebrow' | t }}</p>
+    <h2 id="about-title">{{ ('home.aboutTitle' | t).replace('|', '\n') }}</h2>
+    <p>{{ 'home.aboutText1' | t }}</p>
+    <p>{{ 'home.aboutText2' | t }}</p>
+    <a routerLink="/" fragment="contactos" class="text-link"
+      >{{ 'home.visit' | t }} <app-icon name="arrow"
+    /></a>
+  </div>
+  <aside class="hours-card">
+    <p class="eyebrow">{{ 'home.hours' | t }}</p>
+    <app-icon name="clock" />
+    @for (hour of cafe.hours; track hour.days) {
+      <p>
+        <strong>{{ hour.days }}</strong
+        ><br />{{ hour.time }}
+      </p>
+    } @empty {
+      <p>{{ 'home.hoursSoon' | t }}</p>
+    }
+  </aside>
 </section>
 <section class="section container" aria-labelledby="specialties-title">
-  <div class="section-heading"><div><p class="eyebrow">{{ 'home.specialEyebrow' | t }}</p><h2 id="specialties-title">{{ 'home.specialTitle' | t }}</h2></div><a routerLink="/ementa" class="text-link">{{ 'home.seeMenu' | t }} <app-icon name="arrow"/></a></div>
-  <div class="specialties">@for (dish of specials; track dish.day) {<article><p class="eyebrow">{{ ('days.' + dish.day) | t }}</p><h3>{{ dish.name }}</h3><a routerLink="/ementa" [fragment]="'dia-' + dish.day" class="text-link">{{ 'nav.viewMenu' | t }} <app-icon name="arrow"/></a></article>}</div>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">{{ 'home.specialEyebrow' | t }}</p>
+      <h2 id="specialties-title">{{ 'home.specialTitle' | t }}</h2>
+    </div>
+    <a routerLink="/ementa" class="text-link">{{ 'home.seeMenu' | t }} <app-icon name="arrow" /></a>
+  </div>
+  <div class="specialties">
+    @for (dish of specials; track dish.day) {
+      <article>
+        <p class="eyebrow">{{ 'days.' + dish.day | t }}</p>
+        <h3>{{ dish.name }}</h3>
+        <a routerLink="/ementa" [fragment]="'dia-' + dish.day" class="text-link"
+          >{{ 'nav.viewMenu' | t }} <app-icon name="arrow"
+        /></a>
+      </article>
+    }
+  </div>
 </section>
-<section class="leisure section" aria-labelledby="leisure-title"><div class="container"><p class="eyebrow">{{ 'home.leisureEyebrow' | t }}</p><h2 id="leisure-title">{{ 'home.leisureTitle' | t }}</h2><div class="leisure-grid"><article><span class="activity-number">01</span><h3>{{ 'home.snooker' | t }}</h3><p>{{ 'home.snookerDesc' | t }}</p></article><article><span class="activity-number">02</span><h3>{{ 'home.darts' | t }}</h3><p>{{ 'home.dartsDesc' | t }}</p></article><article><span class="activity-number">03</span><h3>{{ 'home.terrace' | t }}</h3><p>{{ 'home.terraceDesc' | t }}</p></article></div></div></section>
-<section id="galeria" class="section container" aria-labelledby="gallery-title"><div class="section-heading"><div><p class="eyebrow">{{ 'home.galleryEyebrow' | t }}</p><h2 id="gallery-title">{{ 'home.galleryTitle' | t }}</h2></div><p>{{ 'home.galleryDesc' | t }}</p></div>@if(photos.length){<app-gallery [photos]="photos"/>}@else{<p class="gallery-pending">{{ 'home.gallerySoon' | t }}</p>}</section>
-<app-contact/>
+<section class="leisure section" aria-labelledby="leisure-title">
+  <div class="container">
+    <p class="eyebrow">{{ 'home.leisureEyebrow' | t }}</p>
+    <h2 id="leisure-title">{{ 'home.leisureTitle' | t }}</h2>
+    <div class="leisure-grid">
+      <article>
+        <span class="activity-number">01</span>
+        <h3>{{ 'home.snooker' | t }}</h3>
+        <p>{{ 'home.snookerDesc' | t }}</p>
+      </article>
+      <article>
+        <span class="activity-number">02</span>
+        <h3>{{ 'home.darts' | t }}</h3>
+        <p>{{ 'home.dartsDesc' | t }}</p>
+      </article>
+      <article>
+        <span class="activity-number">03</span>
+        <h3>{{ 'home.terrace' | t }}</h3>
+        <p>{{ 'home.terraceDesc' | t }}</p>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="galeria" class="section container" aria-labelledby="gallery-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">{{ 'home.galleryEyebrow' | t }}</p>
+      <h2 id="gallery-title">{{ 'home.galleryTitle' | t }}</h2>
+    </div>
+    <p>{{ 'home.galleryDesc' | t }}</p>
+  </div>
+  @if (photos.length) {
+    <app-gallery [photos]="photos" />
+  } @else {
+    <p class="gallery-pending">{{ 'home.gallerySoon' | t }}</p>
+  }
+</section>
+<app-contact />

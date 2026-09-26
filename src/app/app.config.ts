@@ -5,5 +5,12 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 registerLocaleData(localePt);
 export const appConfig: ApplicationConfig = {
-  providers: [provideBrowserGlobalErrorListeners(), { provide: LOCALE_ID, useValue: 'pt-PT' }, provideRouter(routes, withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }))]
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    { provide: LOCALE_ID, useValue: 'pt-PT' },
+    provideRouter(
+      routes,
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }),
+    ),
+  ],
 };

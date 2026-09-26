@@ -4,16 +4,16 @@ Direção: café de bairro acolhedor, minimalista, com páginas distintas para a
 
 ## Cores
 
-| Token CSS | Cor | Aplicação |
-|---|---|---|
-| `--paper` | `#FFFCF8` | Fundo branco quente |
-| `--white` | `#FFFFFF` | Superfícies e botões secundários |
-| `--ink` | `#252321` | Títulos e texto principal |
-| `--muted` | `#6B625C` | Texto secundário |
-| `--red` | `#A61920` | Marca, botões e destaques |
-| `--red-hover` | `#811319` | Botão primário ao passar o rato |
-| `--line` | `#E9E2DA` | Separadores e contornos |
-| `--tint` | `#F7F1EA` | Fundo dos contactos e linha do prato de hoje |
+| Token CSS     | Cor       | Aplicação                                    |
+| ------------- | --------- | -------------------------------------------- |
+| `--paper`     | `#FFFCF8` | Fundo branco quente                          |
+| `--white`     | `#FFFFFF` | Superfícies e botões secundários             |
+| `--ink`       | `#252321` | Títulos e texto principal                    |
+| `--muted`     | `#6B625C` | Texto secundário                             |
+| `--red`       | `#A61920` | Marca, botões e destaques                    |
+| `--red-hover` | `#811319` | Botão primário ao passar o rato              |
+| `--line`      | `#E9E2DA` | Separadores e contornos                      |
+| `--tint`      | `#F7F1EA` | Fundo dos contactos e linha do prato de hoje |
 
 Editar as variáveis em `src/styles.scss` altera o tema completo.
 

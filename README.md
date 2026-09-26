@@ -72,7 +72,7 @@ Preencher os valores reais em `CAFE`. A morada e o horário ainda aparecem como 
 hours: [
   // Substituir pelos dias e horas reais.
   { days: 'Segunda a sexta', time: '07:00–20:00' },
-]
+];
 ```
 
 `mapsUrl` deve ser uma ligação HTTPS confirmada para o estabelecimento. O botão abre o mapa numa nova janela. `phone` deve incluir o indicativo, por exemplo +351 seguido do número verdadeiro.

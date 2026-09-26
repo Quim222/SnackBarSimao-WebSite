@@ -6,7 +6,13 @@ import { Gallery } from '../shared/gallery';
 import { TranslatePipe } from '../i18n/i18n';
 import { Contact } from '../shared/contact';
 @Component({
-  selector: 'app-home', imports: [RouterLink, Icon, Contact, Gallery, TranslatePipe],
-  templateUrl: './home.html', styleUrl: './home.scss'
+  selector: 'app-home',
+  imports: [RouterLink, Icon, Contact, Gallery, TranslatePipe],
+  templateUrl: './home.html',
+  styleUrl: './home.scss',
 })
-export class Home { readonly cafe = CAFE; readonly photos = GALLERY_PHOTOS; readonly specials = WEEKLY_SPECIALS; }
+export class Home {
+  readonly cafe = CAFE;
+  readonly photos = GALLERY_PHOTOS;
+  readonly specials = WEEKLY_SPECIALS;
+}

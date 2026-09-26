@@ -1,12 +1,96 @@
 <div class="container menu-page">
-  <header class="menu-heading" [class.with-photo]="!!cafe.interiorImage">@if(cafe.interiorImage){<img class="menu-cover" [src]="cafe.interiorImage" [alt]="cafe.interiorImageAlt" width="1824" height="1368" fetchpriority="high">}<div class="menu-heading-copy"><p class="eyebrow">{{ 'menu.headingEyebrow' | t }}</p><h1>{{ 'menu.heading' | t }}</h1><p>{{ 'menu.subheading' | t }}</p></div></header>
-  <section class="today" aria-labelledby="today-title"><div><p class="eyebrow">{{ 'menu.today' | t }}</p>@if (today(); as dish) {<h2 id="today-title">{{ dish.name }}</h2><p>{{ ('days.' + dish.day) | t }} · {{ 'menu.specialty' | t }}</p>} @else {<h2 id="today-title">{{ 'menu.todayFallback' | t }}</h2><p>{{ 'menu.ask' | t }}</p>}</div><app-icon name="plate"/></section>
-  <section id="semana" class="weekly" aria-labelledby="week-title"><div class="section-heading"><h2 id="week-title">{{ 'menu.week' | t }}</h2><span class="muted">{{ 'menu.weekSub' | t }}</span></div>
-  @for (dish of specials; track dish.day) {
-    <article class="dish-row" [id]="'dia-' + dish.day" [class.is-today]="dish.day === day()"><div class="day-label">{{ ('days.' + dish.day) | t }}@if(dish.day === day()){<span class="today-label">{{ 'menu.todayLabel' | t }}</span>}</div><div><h3>{{ dish.name }}</h3>@if(dish.description){<p>{{ dish.description }}</p>}</div>@if(dish.price !== undefined){<span class="price">{{ dish.price | currency:'EUR':'symbol':'1.2-2':'pt-PT' }}</span>}</article>
+  <header class="menu-heading" [class.with-photo]="!!cafe.interiorImage">
+    @if (cafe.interiorImage) {
+      <img
+        class="menu-cover"
+        [src]="cafe.interiorImage"
+        [alt]="cafe.interiorImageAlt"
+        width="1824"
+        height="1368"
+        fetchpriority="high"
+      />
+    }
+    <div class="menu-heading-copy">
+      <p class="eyebrow">{{ 'menu.headingEyebrow' | t }}</p>
+      <h1>{{ 'menu.heading' | t }}</h1>
+      <p>{{ 'menu.subheading' | t }}</p>
+    </div>
+  </header>
+  <section class="today" aria-labelledby="today-title">
+    <div>
+      <p class="eyebrow">{{ 'menu.today' | t }}</p>
+      @if (today(); as dish) {
+        <h2 id="today-title">{{ dish.name }}</h2>
+        <p>{{ 'days.' + dish.day | t }} · {{ 'menu.specialty' | t }}</p>
+      } @else {
+        <h2 id="today-title">{{ 'menu.todayFallback' | t }}</h2>
+        <p>{{ 'menu.ask' | t }}</p>
+      }
+    </div>
+    <app-icon name="plate" />
+  </section>
+  <section id="semana" class="weekly" aria-labelledby="week-title">
+    <div class="section-heading">
+      <h2 id="week-title">{{ 'menu.week' | t }}</h2>
+      <span class="muted">{{ 'menu.weekSub' | t }}</span>
+    </div>
+    @for (dish of specials; track dish.day) {
+      <article class="dish-row" [id]="'dia-' + dish.day" [class.is-today]="dish.day === day()">
+        <div class="day-label">
+          {{ 'days.' + dish.day | t }}
+          @if (dish.day === day()) {
+            <span class="today-label">{{ 'menu.todayLabel' | t }}</span>
+          }
+        </div>
+        <div>
+          <h3>{{ dish.name }}</h3>
+          @if (dish.description) {
+            <p>{{ dish.description }}</p>
+          }
+        </div>
+        @if (dish.price !== undefined) {
+          <span class="price">{{
+            dish.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'pt-PT'
+          }}</span>
+        }
+      </article>
+    }
+    <p class="availability">{{ 'menu.availability' | t }}</p>
+  </section>
+  @if (categories.length) {
+    <nav class="category-nav" aria-label="Categorias da ementa">
+      @for (category of categories; track category.id) {
+        <a routerLink="/ementa" [fragment]="category.id">{{ category.label }}</a>
+      }
+    </nav>
   }
-  <p class="availability">{{ 'menu.availability' | t }}</p></section>
-  @if (categories.length) {<nav class="category-nav" aria-label="Categorias da ementa">@for(category of categories; track category.id){<a routerLink="/ementa" [fragment]="category.id">{{ category.label }}</a>}</nav>}
-  @for (category of categories; track category.id) {<section class="category" [id]="category.id"><h2>{{ category.label }}</h2>@for(item of category.items; track item.name){<div class="item-row"><div><h3>{{ item.name }}</h3>@if(item.description){<p>{{ item.description }}</p>}</div>@if(item.price !== undefined){<span class="price">{{ item.price | currency:'EUR':'symbol':'1.2-2':'pt-PT' }}</span>}</div>}</section>}
-  <aside class="menu-footer"><div><p class="eyebrow">{{ 'menu.nextEyebrow' | t }}</p><h2>{{ 'menu.next' | t }}</h2></div><a routerLink="/" fragment="contactos" class="button secondary"><app-icon name="pin"/>{{ 'menu.location' | t }}</a></aside>
+  @for (category of categories; track category.id) {
+    <section class="category" [id]="category.id">
+      <h2>{{ category.label }}</h2>
+      @for (item of category.items; track item.name) {
+        <div class="item-row">
+          <div>
+            <h3>{{ item.name }}</h3>
+            @if (item.description) {
+              <p>{{ item.description }}</p>
+            }
+          </div>
+          @if (item.price !== undefined) {
+            <span class="price">{{
+              item.price | currency: 'EUR' : 'symbol' : '1.2-2' : 'pt-PT'
+            }}</span>
+          }
+        </div>
+      }
+    </section>
+  }
+  <aside class="menu-footer">
+    <div>
+      <p class="eyebrow">{{ 'menu.nextEyebrow' | t }}</p>
+      <h2>{{ 'menu.next' | t }}</h2>
+    </div>
+    <a routerLink="/" fragment="contactos" class="button secondary"
+      ><app-icon name="pin" />{{ 'menu.location' | t }}</a
+    >
+  </aside>
 </div>
